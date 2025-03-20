@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4</title>
+    <script>
+        document.write("<body style='background-color: beige;'>");
+        
+        alert("Welcome to our store!");
+        var name = prompt("Please enter your name:");
+        var item = prompt("What item would you like to order?");
+        var quantity = prompt("How many would you like to order?");
+        
+        var now = new Date();
+        var hours = now.getHours();
+        var greeting = "Good Morning";
+        if (hours >= 12 && hours < 18) {
+            greeting = "Good Afternoon";
+        } else if (hours >= 18) {
+            greeting = "Good Evening";
+        }
+        
+        var arrivalDate = new Date();
+        arrivalDate.setDate(now.getDate() + 7);
+        var nextDate = arrivalDate.toDateString();
+        document.write("<h1 style='text-align: center;'>" + greeting + " " + name + "! Thanks for Ordering!</h1>");
+        document.write("<p style='text-align: center;'>You ordered <strong>" + quantity + "</strong> of <strong>" + item + "</strong>.</p>");
+        document.write("<p style='text-align: center;'>Your expected arrival date is: <strong>" + nextDate + "</strong>.</p>");
+        
+        
+    </script>
+</head>
+</html>
