@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+    <script>
+        function submitForm(){
+            var elements = document.getElementById("myForm").elements;
+            var elemsArr1 = Array.from(elements);
+            var submission = {};
+            elemsArr1.forEach((element) => {
+            if (element.name) 
+             { 
+                submission[element.name] = element.value;
+             }});
+            var output = "Submitted information: <br>";
+            for(var key in submission)
+                 {
+                     output += key + ": " + submission[key] + "<br>"
+                 }
+             document.getElementById("demo").innerHTML = output;
+        }
+    </script>
+</head>
+<body style="background-color:rgb(1, 1, 2);">
+
+    <div class="container mt-4" style="background-color: lightblue; padding: 20px; border-radius: 10px;" >
+        <div class="p-5 bg-light rounded shadow">
+            <h1 class="display-4">Welcome to the registration tab</h1>
+            <p class="lead">Fill out the form below and click submit to see your details.</p>
+        </div>
+    </div>
+    
+    <div class = "container mt-4" style="background-color: lightblue; padding: 20px; border-radius: 10px;">
+        <div class="p-5 bg-light rounded shadow">
+         <form id="myForm">
+            <div style="text-align: center">
+                      <br>
+                      First name: <input type = "text" name = "fname"><br>
+                      Last name: <input type = "text" name = "lname"><br>
+                      Email Address: <input type="text" name ="email"><br>
+                      Date Of Birth: <input type="text" name="birth"><br>
+                      Password: <input type="password" name = "Password"><br>
+            </div>
+                  </form>
+                <button onclick = "submitForm()"> Submit</button>
+             <p>Click submit</p>
+            
+         <p id = "demo"></p>
+
+        </div>
+    </div>
+</body>
+</html>
