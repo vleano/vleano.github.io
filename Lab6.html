@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Facts</title>
+    <link rel="stylesheet" href="lab6.css">
+</head>
+<body style="background-color: black;">
+    <header>
+        <button onclick="fetchData()">Fetch API</button>
+    </header>
+   
+    <main>
+        <div id="cat-facts-container"></div> <!-- Container for cat facts -->
+        <div id="cat-photo-container">
+            <img id="cat-photo" src="c:\Users\nicko\Downloads\coolcat.jpg" alt="A cute cat" width="300">
+        </div>
+    </main>
+
+    <script>
+        async function fetchData() {
+            try {
+                const url = 'https://brianobruno.github.io/cats.json';
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Could not fetch resource");
+
+                const myObj = await response.json();
+                console.log(myObj); // Logs the JSON response
+
+                // Sort facts by factId
+                const facts = myObj.facts.sort((a, b) => a.factId - b.factId);
+                
+                // Display facts
+                const container = document.getElementById("cat-facts-container");
+                container.innerHTML = "";
+                for (let fact of facts) {
+                    let factElement = document.createElement("p");
+                    factElement.textContent = `Fact ${fact.factId}: ${fact.text}`;
+                    container.appendChild(factElement);
+                }
+
+                // **Update the cat image**
+                document.getElementById("cat-photo").src = myObj.catPhoto;
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+</html>
