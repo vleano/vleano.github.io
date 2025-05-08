@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anime Searcher</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <h1>Anime Searcher</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Type anime name...">
+      <button onclick="searchAnime()">Search</button>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  <script>
+    async function searchAnime() {
+      const query = document.getElementById('searchInput').value;
+      const response = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(query)}`);
+      const data = await response.json();
+
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      data.data.forEach(anime => {
+        const title = anime.attributes.canonicalTitle;
+        const image = anime.attributes.posterImage?.small;
+        const animeId = anime.id;
+
+        const card = document.createElement('a');
+        card.href = `reviews.html?animeId=${animeId}`;
+        card.className = 'anime-card';
+        
+        card.className = 'anime-card';
+card.innerHTML = `
+  <img src="${image}" alt="${title}">
+  <div class="anime-title">${title}</div>
+`;
+
+
+        resultsDiv.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
